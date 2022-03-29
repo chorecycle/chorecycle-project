@@ -41,7 +41,6 @@ class UserRepositoryIT {
 		User testUser = new User(displayName, testEmail);
 		User savedUser = userRepo.save(testUser);
 		
-		System.out.println("ID: " + savedUser.getId());
 		assertTrue(savedUser.getId() != null, "Retrieved ID was null.");
 		assertTrue(savedUser.getAccountType() == AccountType.DEFAULT_TYPE,
 				"Retrieved account type was not the default.");
