@@ -9,7 +9,7 @@
 		<version>${revision}</version>
 	</parent>
 	<artifactId>webui</artifactId>
-	<name>Chore Cycle Application</name>
+	<name>Chore Cycle Web UI</name>
 	<description>Web UI for the Chore Cycle app.</description>
 	<dependencies>
 		<!-- Spring -->

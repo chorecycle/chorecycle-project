@@ -21,7 +21,7 @@ import io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider;
 @AutoConfigureEmbeddedDatabase(provider = DatabaseProvider.ZONKY)
 @TestPropertySource("/default-test.properties")
 @DisplayName("The UserRepository")
-class UserRepositoryTest {
+class UserRepositoryIT {
 	private UserRepository userRepo;
 
 	/**
@@ -29,7 +29,7 @@ class UserRepositoryTest {
 	 * @param userRepo - Spring should inject an auto-configured {@link UserRepository}
 	 */
 	@Autowired
-	public UserRepositoryTest(UserRepository userRepo) {
+	public UserRepositoryIT(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}
 
