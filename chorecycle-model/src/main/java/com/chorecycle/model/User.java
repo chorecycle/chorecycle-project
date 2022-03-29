@@ -1,5 +1,7 @@
 package com.chorecycle.model;
 
+import java.util.UUID;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +20,9 @@ import com.chorecycle.model.conversion.AccountType;
 @Table(name = "cc_user")
 public class User {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column
-	private final long id;
+	private final UUID id;
 	
 	@Column(name = "account_type", nullable = false)
 	private final AccountType accountType;
@@ -36,7 +38,7 @@ public class User {
 	
 	/** Autowired constructor for use by framework. */
 	@Autowired
-	public User(long id, AccountType accountType, String displayName, String email, boolean isEnabled) {		
+	public User(UUID id, AccountType accountType, String displayName, String email, boolean isEnabled) {		
 		this.id = id;
 		this.accountType = accountType;
 		this.displayName = displayName;
@@ -45,35 +47,34 @@ public class User {
 	}
 	
 	/**
-	 * Constructor that initializes the {@code User} in an enabled state with a temporary id of -1 and the default 
-	 * account type. 
+	 * Constructor that initializes the {@code User} in an enabled state with a null id and the default account type. 
 	 * enabled state.
 	 * @param displayName - the (non-unique) display name for the {@code User}
 	 * @param email - the email address for the {@code User}
 	 */
 	public User(String displayName, String email) {
-		this(-1, AccountType.DEFAULT_TYPE, displayName, email, true);
+		this(null, AccountType.DEFAULT_TYPE, displayName, email, true);
 	}
 	
 	/**
-	 * Constructor that initializes the {@code User} in an enabled state with a temporary id of -1, the default account 
-	 * type, and no display name.
+	 * Constructor that initializes the {@code User} in an enabled state with a null id, the default account type, and 
+	 * no display name.
 	 * @param displayName - the (non-unique) display name for the {@code User}
 	 * @param email - the email address for the {@code User}
 	 */
 	public User(String email) {
-		this("", email);
+		this(null, email);
 	}
 	
 	/** Default constructor, to satisfy JPA spec; ideally never used. */
 	protected User() {
-		this(0, AccountType.INVALID, "", "", false);
+		this(null, AccountType.INVALID, null, null, false);
 	}
 
 	/**
 	 * @return the user's id
 	 */
-	public long getId() {
+	public UUID getId() {
 		return this.id;
 	}
 

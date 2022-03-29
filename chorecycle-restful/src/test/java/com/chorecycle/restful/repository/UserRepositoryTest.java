@@ -42,7 +42,7 @@ class UserRepositoryTest {
 		User savedUser = userRepo.save(testUser);
 		
 		System.out.println("ID: " + savedUser.getId());
-		assertTrue(savedUser.getId() > 0, "Retrieved ID was not higher than zero.");
+		assertTrue(savedUser.getId() != null, "Retrieved ID was null.");
 		assertTrue(savedUser.getAccountType() == AccountType.DEFAULT_TYPE,
 				"Retrieved account type was not the default.");
 		assertTrue(savedUser.getDisplayName().equals(displayName),
