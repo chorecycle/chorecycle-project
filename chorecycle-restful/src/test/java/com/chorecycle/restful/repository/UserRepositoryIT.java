@@ -21,7 +21,7 @@ import io.zonky.test.db.AutoConfigureEmbeddedDatabase.DatabaseProvider;
 @AutoConfigureEmbeddedDatabase(provider = DatabaseProvider.ZONKY)
 @TestPropertySource("/default-test.properties")
 @DisplayName("The UserRepository")
-class UserRepositoryTest {
+class UserRepositoryIT {
 	private UserRepository userRepo;
 
 	/**
@@ -29,7 +29,7 @@ class UserRepositoryTest {
 	 * @param userRepo - Spring should inject an auto-configured {@link UserRepository}
 	 */
 	@Autowired
-	public UserRepositoryTest(UserRepository userRepo) {
+	public UserRepositoryIT(UserRepository userRepo) {
 		this.userRepo = userRepo;
 	}
 
@@ -41,8 +41,7 @@ class UserRepositoryTest {
 		User testUser = new User(displayName, testEmail);
 		User savedUser = userRepo.save(testUser);
 		
-		System.out.println("ID: " + savedUser.getId());
-		assertTrue(savedUser.getId() > 0, "Retrieved ID was not higher than zero.");
+		assertTrue(savedUser.getId() != null, "Retrieved ID was null.");
 		assertTrue(savedUser.getAccountType() == AccountType.DEFAULT_TYPE,
 				"Retrieved account type was not the default.");
 		assertTrue(savedUser.getDisplayName().equals(displayName),
