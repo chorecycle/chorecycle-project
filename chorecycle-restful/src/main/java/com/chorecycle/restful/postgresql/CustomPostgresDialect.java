@@ -5,8 +5,8 @@ import java.sql.Types;
 import org.hibernate.dialect.PostgreSQL10Dialect;
 
 /**
- * A PostgreSQL dialect that includes the {@code Text} datatype, and uses "{@code if exists}" in the 
- * "{@code drop schema}" command.
+ * A PostgreSQL dialect that includes the {@code Text} datatype, uses "{@code if exists}" in the "{@code drop schema}" 
+ * command, and uses "{@code if not exists}" in the "{@code create schema}" command.
  */
 public class CustomPostgresDialect extends PostgreSQL10Dialect {
 	
@@ -24,4 +24,18 @@ public class CustomPostgresDialect extends PostgreSQL10Dialect {
 	public String[] getDropSchemaCommand(String schemaName) {
 		return new String[] { "drop schema if exists " + schemaName };
 	}
+
+	/**
+	 * Get the SQL command used to create the named schema. Overridden to use "if not exists" in the "create schema" 
+	 * command.
+	 * @param schemaName - the name of the schema to be created
+	 * @return the creation commands
+	 */
+	@Override
+	public String[] getCreateSchemaCommand(String schemaName) {
+		// TODO Auto-generated method stub
+		return new String[] { "create schema if not exists " + schemaName };
+	}
+	
+	
 }
