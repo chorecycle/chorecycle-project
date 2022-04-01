@@ -11,6 +11,7 @@
 	<artifactId>webui</artifactId>
 	<name>Chore Cycle Web UI</name>
 	<description>Web UI for the Chore Cycle app.</description>
+	
 	<dependencies>
 		<!-- Spring -->
 		<dependency>
@@ -27,19 +28,8 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 		</dependency>
-		<!-- Misc -->
-		<dependency>
-			<groupId>me.paulschwarz</groupId>
-			<artifactId>spring-dotenv</artifactId>
-		</dependency>
-		<!--  
-		<dependency>
-			<groupId>com.chorecycle</groupId>
-			<artifactId>chorecycle-restful</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		-->
 	</dependencies>
+	
 	<build>
 		<plugins>
 			<plugin>
