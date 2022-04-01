@@ -4,9 +4,8 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.ConstructorBinding;
 
 /**
- * Configuration properties expected to be bound from a 
- * {@link org.springframework.context.annotation.PropertySource PropertySource} provided by {@code spring-dotenv}, 
- * accessed through application properties of the form: {@code app.env.*}.
+ * Configuration properties expected to be bound from environment variables, accessed through application properties of 
+ * the form: {@code app.env.*}.
  */
 @ConfigurationProperties(prefix = "app.env")
 @ConstructorBinding

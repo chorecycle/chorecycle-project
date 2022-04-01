@@ -24,7 +24,7 @@ public class PostgresqlDbStringParser {
 	private final String jdbcUrlStr;
 	private final String usernameStr;
 	private final String passwordStr;
-
+	
 	/**
 	 * Sole constructor. <br>
 	 * {@code envProps.getDbUrl()} should return a string in one of the following formats: <br><br>
