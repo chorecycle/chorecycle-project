@@ -33,7 +33,6 @@ public class CustomPostgresDialect extends PostgreSQL10Dialect {
 	 */
 	@Override
 	public String[] getCreateSchemaCommand(String schemaName) {
-		// TODO Auto-generated method stub
 		return new String[] { "create schema if not exists " + schemaName };
 	}
 	
