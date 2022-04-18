@@ -3,14 +3,25 @@ An application for tracking and collaborating on chores.
 
 ### Environment Setup
 
-The **chorecycle-restful** module requires an environment variable called `database.url` containing the url of the PostgreSQL database that it should use. The url should be formatted as follows:
+There are various files named `template.env` in the project. These are to facilitate using [Docker Compose](https://docs.docker.com/compose/) for development. (Do not rely on the production environments having support for 
+Docker Compose.)
 
-`jdbc:postgresql://username:password@server:port/path`
+For each `template.env` file, make a copy of it in the same folder, and name the copy `.env` (with nothing before 
+the dot). In each `.env` file, fill in the appropriate values for the environment variables.
 
-If the url does not have a path, it should end with a slash after the port.
+The `.env` files will contain sensitive information, so make sure that `.gitignore` is configured to **NOT** include 
+those files in version control.
 
-This url should be kept secret, so it's important that .gitignore is configured to **NOT** include it in version control.
+The production environments will also need the appropriate environment variables to be set somehow.
+
+---
+
+One of the aforementioned environment variables is `spring.datasource.url`, which is required by the 
+**chorecycle-restful** module. It contains the url of the PostgreSQL database that the Restful service should use. The 
+url should be formatted as follows:
+
+`jdbc:postgresql://server:port/path`
 
 ### Spring Profiles
 
-Besides the default Spring profile, there is also a profile called `dev`. The `dev` profile should be used for development.
+Besides the default Spring profile, there is also a profile called `dev`, which should be used for development.
