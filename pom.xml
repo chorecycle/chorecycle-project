@@ -29,6 +29,24 @@
 	</modules>
 	
 	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-maven-plugin</artifactId>
+					<configuration>
+						<layout>JAR</layout>
+					</configuration>
+					<executions>
+          	<execution>
+              <goals>
+                <goal>repackage</goal>
+              </goals>
+          	</execution>
+        	</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<plugins>
 		<!-- plugin for javadocs -->
 			<plugin>
@@ -92,11 +110,6 @@
 				<groupId>com.chorecycle</groupId>
 				<artifactId>chorecycle-model</artifactId>
 				<version>${revision}</version>
-			</dependency>
-			<dependency>
-				<groupId>me.paulschwarz</groupId>
-				<artifactId>spring-dotenv</artifactId>
-				<version>2.4.1</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>

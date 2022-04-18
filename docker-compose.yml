@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  restful-service:
+    image: chorecycle-restful
+    build:
+      context: .
+      args:
+        - MODULE=chorecycle-restful
+    container_name: rest-contain
+    env_file: chorecycle-restful/.env
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - PORT=$REST_PORT
+    ports:
+      - "$REST_PORT:$REST_PORT"
+
+  webui-service:
+    image: chorecycle-webui
+    build:
+      context: .
+      args:
+        - MODULE=chorecycle-webui
+    container_name: webui-contain
+    environment:
+      - SPRING_PROFILES_ACTIVE=dev
+      - PORT=$WEBUI_PORT
+    ports:
+      - "$WEBUI_PORT:$WEBUI_PORT"
+
+# Docker Compose can be used in development enviroments for this project.
+# However, do not rely on the production environment supporting Docker Compose.

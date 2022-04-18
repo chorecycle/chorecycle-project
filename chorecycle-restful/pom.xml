@@ -32,10 +32,6 @@
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>me.paulschwarz</groupId>
-			<artifactId>spring-dotenv</artifactId>
-		</dependency>
 
 		<!-- Development -->
 		<dependency>
@@ -90,7 +86,7 @@
 			<dependency>
 				<groupId>io.zonky.test.postgres</groupId>
 				<artifactId>embedded-postgres-binaries-bom</artifactId>
-				<version>11.4.0</version>
+				<version>14.2.0</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
