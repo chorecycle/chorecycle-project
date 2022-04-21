@@ -1,14 +1,23 @@
 # syntax=docker/dockerfile:1
-FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.14.1_1-slim as extract-phase
+
+FROM maven:3.8.5-eclipse-temurin-11-alpine as package-phase
+WORKDIR app
+COPY chorecycle-model/ chorecycle-model/
+COPY chorecycle-restful/ chorecycle-restful/
+COPY chorecycle-webui/ chorecycle-webui/
+COPY pom.xml ./
+RUN mvn package -Dmaven.test.skip
+
+FROM maven:3.8.5-eclipse-temurin-11-alpine as extract-phase
 RUN addgroup -S limited && adduser -S spring -G limited
 USER spring:limited
 WORKDIR app
 ARG MODULE=
-ARG JAR_FILE=/$MODULE/target/*.jar
-COPY ${JAR_FILE} application.jar
+ARG JAR_FILE=app/$MODULE/target/*.jar
+COPY --from=package-phase ${JAR_FILE} application.jar
 RUN java -Djarmode=layertools -jar application.jar extract
 
-FROM adoptopenjdk/openjdk11:x86_64-alpine-jdk-11.0.14.1_1-slim as entry-phase
+FROM maven:3.8.5-eclipse-temurin-11-alpine as entry-phase
 RUN addgroup -S limited && adduser -S spring -G limited
 USER spring:limited
 WORKDIR app
